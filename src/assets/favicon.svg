@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Dark slate background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0d1420" />
+    </linearGradient>
+
+    <!-- M letter — Amber to Gold gradient -->
+    <linearGradient id="mGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="50%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+
+    <!-- Subtle border glow — amber tint -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.5" />
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="15" ry="15" fill="url(#bgGrad)" />
+
+  <!-- Gradient border ring -->
+  <rect width="62" height="62" x="1" y="1" rx="14" ry="14"
+        fill="none"
+        stroke="url(#borderGrad)"
+        stroke-width="1.5" />
+
+  <!-- Big gradient M letter -->
+  <text
+    x="32"
+    y="48"
+    font-family="'Space Grotesk', 'Inter', ui-sans-serif, Arial, sans-serif"
+    font-size="44"
+    font-weight="800"
+    text-anchor="middle"
+    fill="url(#mGrad)"
+    filter="url(#glow)"
+    letter-spacing="-2"
+  >M</text>
+</svg>
