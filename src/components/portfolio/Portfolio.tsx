@@ -288,6 +288,7 @@ const PROJECTS = [
     mac: "",
   },
   {
+    flg: 0,
     img: p3,
     name: "Federated Learning vs Peer-to-Peer Analysis",
     desc: "A research-oriented project comparing Federated Learning and Peer-to-Peer Machine Learning architectures with distributed aggregation techniques and robustness against poisoning, Sybil, and noise attacks.",
