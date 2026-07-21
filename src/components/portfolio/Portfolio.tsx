@@ -1249,7 +1249,7 @@ function Footer() {
       <div className="mx-auto grid max-w-[1300px] gap-10 px-4 sm:grid-cols-3 sm:px-6">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl gradient-primary text-primary-foreground">AM</span>
+            <span className="grid h-9 w-9 place-items-center rounded-xl gradient-primary text-primary-foreground">M</span>
             <span className="font-display text-lg font-bold gradient-text">Maitreya Chuahan</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
