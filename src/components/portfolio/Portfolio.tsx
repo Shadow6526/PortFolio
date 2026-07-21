@@ -250,8 +250,9 @@ const ACHIEVEMENTS = [
 ];
 const PROJECTS = [
   {
+    flg: 1,
     img: p1,
-    name: "Student Productivity & Planner",
+    name: "Orbis",
     desc: "A cross-platform productivity application for Android, Windows, and Linux featuring task management, assignment tracking, attendance monitoring, GPA/CGPA calculator, habit tracking, calendar integration, offline support, and Google Drive synchronization.",
     tech: [
       "Flutter",
@@ -261,13 +262,14 @@ const PROJECTS = [
       "Firestore",
       "Google Drive API",
     ],
-    demo: "#",
-    linux: "#",
-    windows: "#",
-    android: "#",
-    mac: "#",
+    demo: "https://drive.google.com/uc?export=download&id=1I8zCFUY2Hd2kVsHD8Oid4tq_aykUM1v3",
+    linux: "https://drive.google.com/uc?export=download&id=1FSkalDvD3d6Q8D_ejMfDoZpSZkXay0Gk",
+    windows: "https://drive.google.com/uc?export=download&id=1D-U2k1w8YT0dYhDle-BdM2yY6fdFpa2P",
+    android: "https://drive.google.com/uc?export=download&id=1PXdbvl2TuEDIGSwuiTFr3W1a9XPM8Qba",
+    mac: "https://drive.google.com/uc?export=download&id=1_LUUoItbPphT0nHHyRNHHM7CUZJLD4mt",
   },
   {
+    flg: 0,
     img: p2,
     name: "Codeforces Statistics Dashboard",
     desc: "A full-stack analytics dashboard that visualizes Codeforces ratings, contest history, submission heatmaps, and performance trends using the official Codeforces API.",
@@ -280,10 +282,10 @@ const PROJECTS = [
       "Codeforces API",
     ],
     demo: "https://cf-statistics.vercel.app",
-    linux: "#",
-    windows: "#",
-    android: "#",
-    mac: "#",
+    linux: "",
+    windows: "",
+    android: "",
+    mac: "",
   },
   {
     img: p3,
@@ -949,6 +951,7 @@ function Achievements() {
 /* -------------------------------------------------------------------------- */
 
 function Projects() {
+  
   return (
     <section id="projects" className="py-10 sm:py-14">
       <div className="mx-auto max-w-[1300px] px-4 sm:px-6">
@@ -957,7 +960,9 @@ function Projects() {
           title="Selected work"
           subtitle="A few products and experiments I've shipped recently."
         />
+        
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          
           {PROJECTS.map((p) => (
             <article
               key={p.name}
@@ -994,11 +999,16 @@ function Projects() {
                     </span>
                   ))}
                 </div>
+                      
                 <div className="mt-5 flex flex-col gap-2 w-full [transform:translateZ(40px)]">
                   {p.demo && p.demo !== "" && p.demo !== "#" && (
+                    
                     <Button asChild size="sm" className="gradient-primary text-primary-foreground hover:opacity-90 w-full justify-center">
+                      
+
+
                       <a href={p.demo} target="_blank" rel="noreferrer">
-                        <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Live
+                        <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> {p.flg==1 ? "Debain":"Live"}
                       </a>
                     </Button>
                   )}
