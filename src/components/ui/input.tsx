@@ -1,3 +1,10 @@
+/**
+ * Input — the shared single-line field primitive used by the contact form.
+ *
+ * Styling for the contact form is layered on via `FIELD_CLASS` in
+ * `src/content/contact.ts`.
+ */
+
 import * as React from "react";
 
 import { cn } from "@/lib/utils";

@@ -66,10 +66,19 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* Royal Vibe Colors */
+  --color-royal: var(--royal);
+  --color-royal-dark: var(--royal-dark);
+  --color-violet: var(--violet);
+
+  /* Gold Colors */
+  --color-gold: var(--gold);
 }
 
 :root {
   --radius: 1rem;
+  font-size: 16px;
   /* Nordic Aurora deep slate theme */
   --background: oklch(0.11 0.02 240); /* Deep Aurora Slate */
   --foreground: oklch(0.98 0.005 240); /* Ice White */
@@ -92,6 +101,14 @@
   --border: oklch(1 0 0 / 15%);
   --input: oklch(1 0 0 / 18%);
   --ring: oklch(0.65 0.25 280);
+
+  /* Royal Vibe Colors */
+  --royal: oklch(0.55 0.25 280);
+  --royal-dark: oklch(0.08 0.02 260);
+  --violet: oklch(0.7 0.2 280);
+
+  /* Gold Colors */
+  --gold: oklch(0.82 0.14 85);
 
   /* Gradients & Shadows - Nordic Aurora */
   --gradient-primary: linear-gradient(135deg, oklch(0.65 0.25 280), oklch(0.85 0.18 160));
@@ -199,6 +216,51 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out-down {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+
+@keyframes backdrop-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes backdrop-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+@utility animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+@utility animate-fade-out-down {
+  animation: fade-out-down 0.3s ease-in forwards;
+}
+
+@utility animate-backdrop-fade-in {
+  animation: backdrop-fade-in 0.3s ease-out forwards;
+}
+
+@utility animate-backdrop-fade-out {
+  animation: backdrop-fade-out 0.3s ease-in forwards;
 }
 
 /* Wider shimmer for hero name — sweeps across the full gradient */
@@ -319,30 +381,6 @@
   box-shadow: var(--shadow-glow);
 }
 
-@utility glass-input-glow {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-input-glow:focus {
-  border-color: oklch(0.65 0.25 280 / 0.5);
-  box-shadow: 
-    inset 0 1px 1px oklch(1 0 0 / 0.1),
-    0 0 18px oklch(0.65 0.25 280 / 0.35);
-  background: oklch(1 0 0 / 0.05) !important;
-  outline: none;
-}
-
-@keyframes paper-plane-fly {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-  35% { transform: translate(25px, -25px) scale(0.6) rotate(15deg); opacity: 0; }
-  45% { transform: translate(-25px, 25px) scale(0.6) rotate(-15deg); opacity: 0; }
-  75% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-}
-
-@utility animate-plane {
-  animation: paper-plane-fly 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
 @utility contact-glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(25px) saturate(180%);
@@ -367,8 +405,23 @@
     0 0 35px 5px oklch(0.85 0.18 160 / 0.15);
 }
 
-@utility blur-blob {
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+/* Detail modal surface — near-opaque so text stays readable over any section */
+@utility glass-modal {
+  background: oklch(0.12 0.02 245 / 0.97);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.14);
+  box-shadow:
+    inset 0 1px 1px oklch(1 0 0 / 0.08),
+    0 40px 90px -30px oklch(0 0 0 / 0.85),
+    0 0 80px -24px oklch(0.82 0.14 85 / 0.3);
+}
+
+/* Horizontal project rail — hide the scrollbar but keep touch swiping */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build output
+.output/
+.wrangler/
+
+# Local environment overrides
+.env.local
+.env.*.local
+
+# OS/editor files
+.DS_Store

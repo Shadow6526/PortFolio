@@ -1,3 +1,12 @@
+/**
+ * Root route — document shell, global providers, 404/error fallbacks, and route
+ * metadata.
+ *
+ * Metadata comes from `src/content/site.ts` so the title/description stay in
+ * sync with the portfolio identity. Section content lives under
+ * `src/components/portfolio`.
+ */
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -12,6 +21,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import faviconUrl from "../assets/favicon.svg";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE } from "@/content/site";
 import { Toaster } from "sonner";
 
 function NotFoundComponent() {
@@ -19,7 +29,9 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">
+          Page not found
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -50,7 +62,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong on our end. You can try refreshing or head back
+          home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -74,34 +87,36 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Maitreya Chauhan" },
-      { name: "description", content: "Portfolio of Maitreya Chauhan — ICPC Asia Regionalist, Competitive Programmer, and Full Stack Developer building fast, elegant software with Flutter, React, Node.js & Firebase." },
-      { name: "author", content: "Maitreya Chauhan" },
-      { property: "og:title", content: "Maitreya Chauhan — Competitive Programmer & Full Stack Developer" },
-      { property: "og:description", content: "Portfolio of Maitreya Chauhan — ICPC Asia Regionalist & Full Stack Developer." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Shadow6526" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: faviconUrl, type: "image/svg+xml" },
-      { rel: "shortcut icon", href: faviconUrl },
-    ],
-  }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
-});
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
+  {
+    head: () => ({
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: SITE.metadata.title },
+        { name: "description", content: SITE.metadata.description },
+        { name: "author", content: SITE.metadata.author },
+        { property: "og:title", content: SITE.metadata.ogTitle },
+        { property: "og:description", content: SITE.metadata.ogDescription },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: SITE.metadata.twitterCard },
+        { name: "twitter:site", content: SITE.metadata.twitterSite },
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        { rel: "icon", href: faviconUrl, type: "image/svg+xml" },
+        { rel: "shortcut icon", href: faviconUrl },
+      ],
+    }),
+    shellComponent: RootShell,
+    component: RootComponent,
+    notFoundComponent: NotFoundComponent,
+    errorComponent: ErrorComponent,
+  },
+);
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
