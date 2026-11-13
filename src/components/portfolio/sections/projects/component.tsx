@@ -282,6 +282,8 @@ export default function Projects() {
 // ================= PROJECT SLIDE ===============
 
 function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
   const hasDemo = isRealLink(item.links.demo);
 
   // `links` always has every platform key; filter to the ones with real URLs.
@@ -289,8 +291,38 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
     isRealLink(item.links[platform.key]),
   );
 
+  // ================= HOVER VIDEO ===============
+
+  // Hovering anywhere on the card starts the optional preview. `preload="none"`
+  // keeps the video off the network until the user actually shows interest.
+  const playVideo = () => {
+    setIsHovering(true);
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.play().catch(() => {
+      // Autoplay policies can reject; the screenshot/poster stays visible.
+    });
+  };
+
+  // Returning to the image should also rewind the preview.
+  const resetVideo = () => {
+    setIsHovering(false);
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+  };
+
   return (
-    <article className="group grid h-full items-center gap-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-sm sm:p-8 lg:grid-cols-12 lg:gap-12">
+    <article
+      className="group grid h-full items-center gap-8 rounded-[2rem] border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-sm sm:p-8 lg:grid-cols-12 lg:gap-12"
+      onMouseEnter={playVideo}
+      onMouseLeave={resetVideo}
+    >
       {/* ================= MEDIA =============== */}
 
       <div className="lg:col-span-6">
@@ -314,7 +346,7 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
               </span>
             </div>
 
-            {/* Screenshot */}
+            {/* Screenshot → hover video */}
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
                 src={item.Icon}
@@ -322,6 +354,23 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+
+              {item.video && (
+                <video
+                  ref={videoRef}
+                  src={item.video}
+                  poster={item.Icon}
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 motion-reduce:hidden ${
+                    isHovering ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              )}
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>

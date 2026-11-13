@@ -19,6 +19,7 @@ without a restart.
 | Achievement cards | `src/components/portfolio/sections/achievements/<slug>/index.ts` | One achievement: metadata, icon, description, stat rows, media, certificate |
 | Projects | `src/components/portfolio/sections/projects/content.ts` | Header, count/carousel labels, action labels, platform names |
 | Project slides | `src/components/portfolio/sections/projects/<slug>/index.ts` | One project: metadata, screenshot, description, tech, links |
+| Project hover videos | `src/assets/projects/<metadata.id>.mp4` or `.webm` | Optional muted preview played while a project card is hovered |
 | Contact | `src/content/contact.ts` | Header, availability, info rail, intent chips, form labels/placeholders, feedback messages, field styling |
 | Contact details | `src/content/site.ts` | Email, phone, location, timezone, social URLs |
 | Footer | `src/content/footer.ts` | Description, column labels, copyright template |
@@ -59,6 +60,14 @@ Shared portfolio chrome lives in:
 5. Edit `name`, `about`, `tech`, and `links`. Use `""` for missing platform
    links; they are hidden automatically.
 6. No barrel edit is needed.
+
+### Add a project hover video
+
+1. Put an MP4 or WebM file in `src/assets/projects/`.
+2. Name it after the project's `metadata.id`, for example `orbis.mp4` or
+   `cf-dashboard.webm`.
+3. No code edit is needed. The project screenshot stays visible by default and
+   acts as the poster; the video plays muted and loops on hover.
 
 ### Change contact details
 
