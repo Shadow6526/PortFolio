@@ -1,6 +1,4 @@
 /**
- * Federated Learning vs Peer-to-Peer Analysis — project slide.
- *
  * Controls one slide in the Projects carousel.
  * Consumed by the auto-discovered barrel in `../index.ts`.
  *
@@ -10,15 +8,15 @@
  * `metadata.sortOrder`.
  */
 
-import p3 from "@/assets/project-3.jpg";
+import p2 from "@/assets/modx.png";
 
 // ================= METADATA ===============
 
 // `sortOrder` controls carousel position (lower = earlier). `flg` = 1 shows
 // "Download App"; `flg` = 0 shows "Live Demo". `id` must be unique.
 export const metadata = {
-  id: "federated-learning-p2p",
-  name: "Federated Learning vs Peer-to-Peer Analysis",
+  id: "modx",
+  name: "Modx",
   flg: 0,
   sortOrder: 3,
 };
@@ -26,21 +24,18 @@ export const metadata = {
 // ================= SCREENSHOT ===============
 
 // Imported above so Vite fingerprints the URL and it never 404s.
-export const Icon = p3;
+export const Icon = p2;
 
 // ================= ABOUT ===============
 
 // Slide description.
-export const about = `A research-oriented project comparing Federated Learning and Peer-to-Peer Machine Learning architectures with distributed aggregation techniques and robustness against poisoning, Sybil, and noise attacks.`;
+export const about = `A fast, private, 100% offline desktop file converter for Linux, Windows, and macOS featuring an adaptive radial gesture menu, instant format conversion across 100+ file types, custom 3D action presets (merge, OCR, trim, compress), automated folder monitoring, and a scriptable CLI.`;
 
 // ================= TECH STACK ===============
 
 // Pills shown under the description.
 export const tech = [
-  "Python",
-  "Machine Learning",
-  "Federated Learning",
-  "P2P Networks",
+  "C#",   ".NET 10",   "Avalonia UI",   "XAML",   "FFmpeg",   "LibreOffice",   "Tesseract OCR",   "Linux X11/Wayland"
 ];
 
 // ================= LINKS ===============
@@ -48,9 +43,9 @@ export const tech = [
 // Use "" for platforms without a release; empty links are hidden. A demo of
 // "#" is also treated as missing.
 export const links = {
-  demo: "#",
-  linux: "#",
-  windows: "#",
-  android: "#",
-  mac: "#",
+  demo: "",
+  linux: "",
+  windows: "",
+  android: "",
+  mac: "",
 };

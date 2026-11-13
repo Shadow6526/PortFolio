@@ -10,7 +10,7 @@
  * `metadata.sortOrder`.
  */
 
-import p2 from "@/assets/project-2.jpg";
+import p2 from "@/assets/cf-dashboard.png";
 
 // ================= METADATA ===============
 

@@ -48,7 +48,7 @@ export const PROJECTS_CONTENT = {
   slideOfLabel: "of",
   caseStudyLabel: "case study",
   liveDemoLabel: "Live Demo",
-  downloadAppLabel: "Download App",
+  downloadAppLabel: "AppImage",
   noReleaseLabel: "No public release yet",
 
   platforms: {
